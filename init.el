@@ -39,6 +39,9 @@ values."
      ivy
      auto-completion
      better-defaults
+     csharp
+     (colors :variables
+             colors-enable-nyan-cat-progress-bar t)
      emacs-lisp
      git
      markdown
@@ -58,7 +61,8 @@ values."
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '(org-plus-contrib)
+   dotspacemacs-excluded-packages '(org-plus-contrib
+                                    color-identifier-mode)
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
    ;; `used-only' installs only explicitly used packages and uninstall any
@@ -300,6 +304,12 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (global-hungry-delete-mode t)
+  ;;
+  (add-hook 'f90-mode-hook 'flycheck-mode)
+  (add-hook 'c++-mode-hook 'flycheck-mode)
+
+  (setq-default omnisharp--curl-executable-path "/usr/bin/curl")
+  (setq-default omnisharp-server-executable-path "~/omnisharp-server/OmniSharp/bin/Debug/OmniSharp.exe")
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
