@@ -130,7 +130,9 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(spacemacs-dark
+   dotspacemacs-themes '(moe-dark
+                         monokai
+                         spacemacs-dark
                          spacemacs-light)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
@@ -294,7 +296,7 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
-  )
+    )
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
@@ -304,13 +306,17 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (global-hungry-delete-mode t)
-  ;;
+  ;; Set flycheck-mode on for some major-mode.
   (add-hook 'f90-mode-hook 'flycheck-mode)
   (add-hook 'c++-mode-hook 'flycheck-mode)
-
+  (setq ns-use-srgb-colorspace nil)
+  ;;(setq powerline-default-separator 'arrow)
+  ;; Set for csharp layer.
   (setq-default omnisharp--curl-executable-path "/usr/bin/curl")
   (setq-default omnisharp-server-executable-path "~/omnisharp-server/OmniSharp/bin/Debug/OmniSharp.exe")
-  )
 
+  (global-set-key (kbd "<f7>") 'eshell)
+  (global-set-key (kbd "<f8>") 'view-echo-area-messages)
+  )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
